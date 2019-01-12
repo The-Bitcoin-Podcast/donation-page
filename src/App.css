@@ -1,4 +1,5 @@
 .App {
+  
   text-align: center;
 }
 
@@ -15,7 +16,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -29,4 +29,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Personal designs */
+div {
+  background-image: url("./img/pattern_17.png");
 }
