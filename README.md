@@ -1,44 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Donation Leaderboard
+This web-application allows the display of transactions to an address on the Ethereum blockchain as a leaderboard.
 
-## Available Scripts
+**Important:** We use branches to deploy separate leaderboards! The master is intended as a easy-to-fork template and currently looks like [this](https://placeholder-leaderboard.netlify.com).
 
-In the project directory, you can run:
+## Status
+Production ready!
 
-### `npm start`
+**First instance deployed** - see [ScalingNOW!!! campaign](https://scalingnow.giveth.io)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Second instance deployed** - see [Giveth Donation Leaderboard](https://leaderboard.giveth.io)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+**Third instance deployed** - see [EIP0 campaign](https://eip0.tk)
 
-### `npm test`
+**Fourth instance deployed** - see [DAppNode Donation Leaderboard](https://dappnode.io)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Fifth instance deployed** - see [Camp Decentral campaign](https://decentral.giveth.io)
 
-### `npm run build`
+## Important
+We use different branches to build out the leaderboard for different initiatives to **deploy directly from their branch**. If you are a contributor to a specific deploy please stay within that branch and don't commit back to *Master*.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Primer
+After the great success of the [Merry Merkle](https://merrymerkle.com) project by [TrueBit Team](https://truebit.io/) - they managed to collect over 130.000€ in ETH donations for a local charity project, we at [Giveth](https://giveth.io) figured it would be great if more Ethereum projects could use such a tool.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+After playing with our fork a bit, we still decided to build our own tool, because we found the original project very specialized for its cause and we would love to make a tool that can be of general use for many other developers down the line.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributors
+This project is actively seeking contributions. If you are experienced with web3 and/or React, please don't hesitate to contact the repository owner @geleeroyale on GitHub or Riot.im
 
-### `npm run eject`
+### Goal
+The mission - should you accept it - is to build out a react leaderboard frontend and a web3 backend that can monitor an address for transactions. Please see the [Issue List](https://github.com/geleeroyale/eth-leaderboard/issues) for details on tasks.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1 - Star, Fork and Clone the repository
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2 - Go to your local repo directory and run ```npm install``` (requires [npm](https://www.npmjs.com/))
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3 - Visit the **[Issue List](https://github.com/geleeroyale/eth-leaderboard/issues)** or the **[Planning Board](https://github.com/geleeroyale/eth-leaderboard#boards?repos=121978742)**
 
-## Learn More
+### Stack
+  - Etherscan API (should be switched to open blockexplorer/scraper - see issues)
+  - web3.js
+  - glamor
+  - Reactjs via ```create-react-app```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### React
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+Below you will find some information on how to perform common tasks.<br>
+You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+#### Attribution
+Eth-Scaling graphic by @cleo
