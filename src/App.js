@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { css } from 'glamor'
-import { Container, Tab, Header } from 'semantic-ui-react'
+import './semantic/dist/semantic.min.css'
+import { Container } from 'semantic-ui-react'
+
 
 import Welcome from './components/Welcome'
 import CryptoContainer from './containers/CryptoContainer'

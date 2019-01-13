@@ -31,7 +31,7 @@ class CryptoContainer extends Component {
         return <div>
             <hr />
             <Header as='h2'>Choose a currency to donate.</Header>
-            <Tab menu={{ fluid: true, vertical: false }} panes={this.panes}  />
+            <Tab menu={{ fluid: true, vertical: false, color:'orange', inverted: true}} panes={this.panes}  />
             <Leaderboard txns={this.state.txns} />
         </div>
     }

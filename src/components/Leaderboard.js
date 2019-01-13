@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Emojify from 'react-emojione'
-import { Table, Header } from 'semantic-ui-react'
+import { Table, Header, Container } from 'semantic-ui-react'
 import _ from 'lodash'
 
 class Leaderboard extends Component {
@@ -40,12 +40,13 @@ class Leaderboard extends Component {
     render() {
         const { column, direction } = this.state
         return (
-            <div>
+            <Container fluid>
+                <div>
                 <hr />
                 <Header as='h2'>Find yourself on the Leaderboard</Header>
-                <Table size='small' sortable>
-                    <Table.Header>
-                        <Table.Row>
+                <Table color={'orange'}  sortable striped padded seize={'small'}>
+                    <Table.Header >
+                        <Table.Row >
                             <Table.HeaderCell
                                 sorted={column === 'rank' ? direction : null}
                                 onClick={this.handleSort('rank')}
@@ -68,28 +69,29 @@ class Leaderboard extends Component {
                                 <Table.Cell>{item.rank}</Table.Cell>
                                 <Table.Cell>{item.from}</Table.Cell>
                                 <Table.Cell>{item.value / 10**18} ETH</Table.Cell>
+                                {/* <Table.Cell>
+                                    <Emojify>
+                                        {item.input.length &&
+                                        // myweb3.utils.hexToAscii(item.input)}
+                                        this.hex_to_ascii(item.input)}
+                                    </Emojify>
+                                </Table.Cell> */}
                                 <Table.Cell>
-                                <Emojify>
-                                    {item.input.length &&
-                                    // myweb3.utils.hexToAscii(item.input)}
-                                    this.hex_to_ascii(item.input)}
-                                </Emojify>
-                                </Table.Cell>
-                                <Table.Cell>
-                                {item.hash.map((txHash, index) => (
-                                    <a
-                                    key={index}
-                                    href={"https://etherscan.io/tx/" + txHash}
-                                    >
-                                    [{index + 1}]
-                                    </a>
-                                ))}
+                                    {item.hash.map((txHash, index) => (
+                                        <a
+                                        key={index}
+                                        href={"https://etherscan.io/tx/" + txHash}
+                                        >
+                                        [{index + 1}]
+                                        </a>
+                                    ))}
                                 </Table.Cell>
                             </Table.Row>
                         ))}
                     </Table.Body>
-                </ Table>
-            </div>
+                </Table>
+                </div>
+            </Container>
         )
     }
 }

@@ -225,7 +225,7 @@ class EthContainer extends Component {
                                 name="amount"
                             />
                             <input type="text" placeholder="message" name="message" />
-                            <Button>Send</Button>
+                            <Button className="Button">Send</Button>
                         </Form>
                     </div>
                 </Grid.Column>
