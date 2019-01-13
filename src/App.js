@@ -4,25 +4,9 @@ import { css } from 'glamor'
 import { Container, Tab, Header } from 'semantic-ui-react'
 
 import Welcome from './components/Welcome'
-import EthContainer from './containers/EthContainer'
-import BtcContainer from './containers/BtcContainer'
-import LtcContainer from './containers/LtcContainer'
+import CryptoContainer from './containers/CryptoContainer'
 
-const tabsStyle = css({
-  paddingTop: '1em',
-})
 
-const panes = [
-  { menuItem: 'ETH', render: () => <Tab.Pane><EthContainer /></Tab.Pane> },
-  { menuItem: 'BTC', render: () => <Tab.Pane><BtcContainer /></Tab.Pane> },
-  { menuItem: 'LTC', render: () => <Tab.Pane><LtcContainer /></Tab.Pane> },
-]
-
-const CryptoTabs = () => <div>
-    <hr />
-    <Header as='h2'>Choose a currency to donate.</Header>
-    <Tab menu={{ fluid: true, vertical: false }} panes={panes}  />
-  </div>    
 
 class App extends Component {
 
@@ -31,7 +15,7 @@ class App extends Component {
       <div className="App">
         <Container className='App-header'>
           <Welcome />
-          <CryptoTabs className={`${tabsStyle}`}/>
+          <CryptoContainer />
         </Container>
       </div>
     );

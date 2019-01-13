@@ -110,11 +110,9 @@ class EthContainer extends Component {
         const ethTotal = filteredEthList.reduce((acc, cur) => {
               return acc.add(cur.value);
         }, new myweb3.utils.BN(0));
-        return this.setState({
-            ethlist: filteredEthList,
-            totalAmount: parseFloat(myweb3.utils.fromWei(ethTotal)).toFixed(2)
-        });
-    };
+        console.log(filteredEthList)
+        return this.props.onTxChange(filteredEthList)
+    }
     
     componentDidMount = () => {
         if (
@@ -140,12 +138,10 @@ class EthContainer extends Component {
                 transactionsArray: res
             },
             () => {
-                this.processEthList(res);
+                this.processEthList(res)
             }
-            );
-
-        })
-    };
+        )})
+    }
 
     handleDonate = event => {
         event.preventDefault();
