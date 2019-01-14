@@ -19,7 +19,7 @@ body {
   height: 100%;
 }
 html {
-  font-size: 14px;
+  font-size: 12px;
 }
 body {
   margin: 0px;
@@ -28,7 +28,7 @@ body {
   min-width: 320px;
   background: #F9F9F9;
   font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.33;
   color: #212121;
   font-smoothing: antialiased;
@@ -88,7 +88,7 @@ h5:last-child {
 
 p {
   margin: 0em 0em 1.53em;
-  line-height: 1.7em;
+  line-height: 1em;
 }
 p:first-child {
   margin-top: 0em;

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "blockcypher": "^0.2.0",
     "glamor": "^2.20.40",
     "lodash": "^4.17.11",
     "qrcode.react": "^0.9.2",
@@ -14,7 +15,7 @@
     "semantic-ui-react": "^0.84.0",
     "web3": "^1.0.0-beta.37"
   },
-"scripts": {
+  "scripts": {
     "build-semantic": "cd src/semantic && gulp build-css build-assets",
     "watch-semantic": "cd src/semantic && yarn run build-semantic && gulp watch",
     "start": "yarn run build-semantic && react-scripts start",

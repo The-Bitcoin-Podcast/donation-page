@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import QRCode from 'qrcode.react'
 import { css } from "glamor"
 import Web3 from 'web3'
-import { Grid, Button, Form } from 'semantic-ui-react'
+import { Grid, Button, Form, Header } from 'semantic-ui-react'
 
 let ethContainerStyle = css({
     background: '#ffffffff',
@@ -15,8 +15,13 @@ let qrCodeStyle = css({
     justifySelf: 'end',
 })
 
+let formStyle = css({
+    padding: '1rem',
+})
+
 const donationNetworkID = 1; // make sure donations only go through on this network.
-const donationAddress = "0x0Ab4d7d50f36A168EbA567b07BbB7D1Ad3372A86"; //replace with the address to watch
+// const donationAddress = "0x0Ab4d7d50f36A168EbA567b07BbB7D1Ad3372A86"; //replace with the address to watch
+const donationAddress = "0x0Ab4d7d50f36A168EbA567b07BbB7D1Ad3372A86" //replace with the address to watch
 const apiKey = "SC1H6JHAK19WC1D3BGV3JWIFD983E7BS58"; //replace with your own key
 let myweb3
 
@@ -70,31 +75,31 @@ class EthContainer extends Component {
         // .filter(obj => {
         //   return obj.value.cmp(new myweb3.utils.BN(0));
         // }) // filter out zero-value transactions
-        .reduce((acc, cur) => {
+            .reduce((acc, cur) => {
             // group by address and sum tx value
-            if (cur.isError !== "0") {
-                // tx was not successful - skip it.
+                if (cur.isError !== "0") {
+                    // tx was not successful - skip it.
+                    return acc;
+                }
+                if (cur.from === donationAddress.toLowerCase()) {
+                    // tx was outgoing - don't add it in
+                    return acc;
+                }
+                if (typeof acc[cur.from] === "undefined") {
+                    acc[cur.from] = {
+                        from: cur.from,
+                        value: new myweb3.utils.BN(0),
+                        input: cur.input,
+                        hash: []
+                    };
+                }
+                acc[cur.from].value = cur.value.add(acc[cur.from].value);
+                acc[cur.from].input =
+                    cur.input !== "0x" && cur.input !== "0x00"
+                        ? cur.input
+                        : acc[cur.from].input;
+                acc[cur.from].hash.push(cur.hash);
                 return acc;
-            }
-            if (cur.from === donationAddress.toLowerCase()) {
-                // tx was outgoing - don't add it in
-                return acc;
-            }
-            if (typeof acc[cur.from] === "undefined") {
-                acc[cur.from] = {
-                    from: cur.from,
-                    value: new myweb3.utils.BN(0),
-                    input: cur.input,
-                    hash: []
-                };
-            }
-            acc[cur.from].value = cur.value.add(acc[cur.from].value);
-            acc[cur.from].input =
-                cur.input !== "0x" && cur.input !== "0x00"
-                    ? cur.input
-                    : acc[cur.from].input;
-            acc[cur.from].hash.push(cur.hash);
-            return acc;
         }, {});
         filteredEthList = Object.keys(filteredEthList)
             .map(val => filteredEthList[val])
@@ -107,11 +112,7 @@ class EthContainer extends Component {
             obj.rank = index + 1;
             return obj;
         });
-        const ethTotal = filteredEthList.reduce((acc, cur) => {
-              return acc.add(cur.value);
-        }, new myweb3.utils.BN(0));
-        console.log(filteredEthList)
-        return this.props.onTxChange(filteredEthList)
+        return this.props.onTxChange('eth', filteredEthList)
     }
     
     componentDidMount = () => {
@@ -197,6 +198,7 @@ class EthContainer extends Component {
 
     render() {
         return <div className={`${ethContainerStyle}`}>
+            <Header as="h2">Ethereum</Header>
             <Grid divided='vertically'>
                 <Grid.Row columns={2} className={`${ethContainerStyle}`}>
                 <Grid.Column className={`${ethContainerStyle}`}>
@@ -218,7 +220,7 @@ class EthContainer extends Component {
                             {` with your name (or something else) as a message `} 
                         </h4>
                         <h4>All donations with the same address will be added together.</h4>
-                        <Form  onSubmit={this.handleDonate}>
+                        <Form  onSubmit={this.handleDonate} className={`${formStyle}`}>
                             <input
                                 type="text"
                                 placeholder="ETH to donate"
