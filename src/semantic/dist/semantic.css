@@ -22904,7 +22904,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .red.row,
 .ui.grid > .red.column,
 .ui.grid > .row > .red.column {
-  background-color: #DB2828 !important;
+  background-color: #F44336 !important;
   color: #FFFFFF;
 }
 
@@ -22913,7 +22913,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .orange.row,
 .ui.grid > .orange.column,
 .ui.grid > .row > .orange.column {
-  background-color: #F2711C !important;
+  background-color: #EF690C !important;
   color: #FFFFFF;
 }
 
@@ -22922,7 +22922,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .yellow.row,
 .ui.grid > .yellow.column,
 .ui.grid > .row > .yellow.column {
-  background-color: #FBBD08 !important;
+  background-color: #FFEB3B !important;
   color: #FFFFFF;
 }
 
@@ -22940,7 +22940,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .green.row,
 .ui.grid > .green.column,
 .ui.grid > .row > .green.column {
-  background-color: #21BA45 !important;
+  background-color: #4CAF50 !important;
   color: #FFFFFF;
 }
 
@@ -22949,7 +22949,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .teal.row,
 .ui.grid > .teal.column,
 .ui.grid > .row > .teal.column {
-  background-color: #00B5AD !important;
+  background-color: #1de9b6 !important;
   color: #FFFFFF;
 }
 
@@ -22958,7 +22958,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .blue.row,
 .ui.grid > .blue.column,
 .ui.grid > .row > .blue.column {
-  background-color: #2185D0 !important;
+  background-color: #2196F3 !important;
   color: #FFFFFF;
 }
 
@@ -22976,7 +22976,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .purple.row,
 .ui.grid > .purple.column,
 .ui.grid > .row > .purple.column {
-  background-color: #A333C8 !important;
+  background-color: #9C27B0 !important;
   color: #FFFFFF;
 }
 
@@ -22985,7 +22985,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .pink.row,
 .ui.grid > .pink.column,
 .ui.grid > .row > .pink.column {
-  background-color: #E03997 !important;
+  background-color: #E91E63 !important;
   color: #FFFFFF;
 }
 
@@ -23003,7 +23003,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .grey.row,
 .ui.grid > .grey.column,
 .ui.grid > .row > .grey.column {
-  background-color: #767676 !important;
+  background-color: #9E9E9E !important;
   color: #FFFFFF;
 }
 
@@ -23672,10 +23672,6 @@ ol.ui.horizontal.list li:before,
     display: none !important;
   }
 }
-
-/*******************************
-         Theme Overrides
-*******************************/
 
 /*******************************
          Site Overrides

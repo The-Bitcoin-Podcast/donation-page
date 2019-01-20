@@ -3,6 +3,13 @@ import Emojify from 'react-emojione'
 import { Table, Header, Container } from 'semantic-ui-react'
 
 class Leaderboard extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            txns: this.props.txns
+        }
+    }
+
 
     hex_to_ascii = (str1) => {
         var hex  = str1.toString();
@@ -13,45 +20,58 @@ class Leaderboard extends Component {
         return str;
     }
 
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.txns !== this.props.txns) {
+            this.setState({
+                txns: this.props.txns
+            })
+        }
+    }
+
     render() {
         let { txns } = this.props
         return (
             <Container fluid>
                 <div>
                 <hr />
-                <Header as='h2'>Find yourself on the Leaderboard</Header>
+                <Header as='h1'>Find yourself on the Leaderboard</Header>
                 <Table color={'orange'} striped padded size={'small'}>
                     <Table.Header >
                         <Table.Row >
-                            <Table.HeaderCell>Rank</Table.HeaderCell>
-                            <Table.HeaderCell>Address</Table.HeaderCell>
-                            <Table.HeaderCell>Value</Table.HeaderCell>
-                            <Table.HeaderCell>Message</Table.HeaderCell>
-                            <Table.HeaderCell>Tx Link</Table.HeaderCell>
+                            <Table.HeaderCell><Header as='h3'>Rank</Header></Table.HeaderCell>
+                            <Table.HeaderCell><Header as='h3'>Address</Header></Table.HeaderCell>
+                            <Table.HeaderCell><Header as='h3'>Value</Header></Table.HeaderCell>
+                            {/* <Table.HeaderCell><Header as='h3'>USD</Header></Table.HeaderCell> */}
+                            <Table.HeaderCell><Header as='h3'>Message</Header></Table.HeaderCell>
+                            <Table.HeaderCell><Header as='h3'>Tx Link</Header></Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
                         {txns.map(item => (
                             <Table.Row key={item.from}>
-                                <Table.Cell><p>{item.rank}</p></Table.Cell>
-                                <Table.Cell><p>{item.from}</p></Table.Cell>
-                                <Table.Cell>{parseFloat(item.value / 10**18).toPrecision(4)} ETH</Table.Cell>
+                                <Table.Cell><Header as='h4'>{item.rank}</Header></Table.Cell>
+                                <Table.Cell><Header as='h4'>{item.from}</Header></Table.Cell>
+                                <Table.Cell><Header as='h4'>{`${parseFloat(item.value).toPrecision(3)} ${item.currency}`}</Header>
+                                <Header as='h4'>{`${parseFloat(item.usd_value)} USD`}</Header></Table.Cell>
                                 <Table.Cell>
-                                    <Emojify>
-                                        {item.input.length &&
-                                        // myweb3.utils.hexToAscii(item.input)}
-                                        this.hex_to_ascii(item.input)}
-                                    </Emojify>
+                                    <Header as='h4'>
+                                        <Emojify>
+                                            {item.input.length &&
+                                            this.hex_to_ascii(item.input)}
+                                        </Emojify>
+                                    </Header>
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {item.hash.map((txHash, index) => (
-                                        <a
-                                        key={index}
-                                        href={"https://etherscan.io/tx/" + txHash}
-                                        >
-                                        [{index + 1}]
-                                        </a>
-                                    ))}
+                                    <Header as='h4'>        
+                                        {item.hash.map((txHash, index) => (
+                                            <a
+                                            key={index}
+                                            href={"https://etherscan.io/tx/" + txHash}
+                                            >
+                                            [{index + 1}]
+                                            </a>
+                                        ))}
+                                    </Header>
                                 </Table.Cell>
                             </Table.Row>
                         ))}

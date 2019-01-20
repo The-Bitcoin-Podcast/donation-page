@@ -40,14 +40,15 @@ const etherscanApiLinks = {
 
 class EthContainer extends Component {
     constructor(props) {
-        super(props);
-    
+        super(props)
+
         this.state = {
             ethlist: [],
             searchTerm: "",
             donateenabled: true,
             socketconnected: false,
-            totalAmount: 0
+            totalAmount: 0,
+            price: 0
         };
     }
 
@@ -66,10 +67,9 @@ class EthContainer extends Component {
     };
 
     processEthList = ethlist => {
-        // let totalAmount = new myweb3.utils.BN(0);
         let filteredEthList = ethlist
             .map(obj => {
-                obj.value = new myweb3.utils.BN(obj.value); // convert string to BigNumber
+                obj.value = obj.value / 10**18
                 return obj;
             })
         // .filter(obj => {
@@ -88,12 +88,15 @@ class EthContainer extends Component {
                 if (typeof acc[cur.from] === "undefined") {
                     acc[cur.from] = {
                         from: cur.from,
-                        value: new myweb3.utils.BN(0),
+                        value: 0,
                         input: cur.input,
-                        hash: []
+                        hash: [],
+                        currency: 'ETH',
+                        rank: 0,
+                        usd_value: 0
                     };
                 }
-                acc[cur.from].value = cur.value.add(acc[cur.from].value);
+                acc[cur.from].value = cur.value + acc[cur.from].value;
                 acc[cur.from].input =
                     cur.input !== "0x" && cur.input !== "0x00"
                         ? cur.input
@@ -105,7 +108,7 @@ class EthContainer extends Component {
             .map(val => filteredEthList[val])
             .sort((a, b) => {
                 // sort greatest to least
-                return b.value.cmp(a.value);
+                return b.value - a.value
         })
         .map((obj, index) => {
             // add rank
@@ -142,6 +145,24 @@ class EthContainer extends Component {
                 this.processEthList(res)
             }
         )})
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (!prevProps.price === this.props.price) {
+            console.log(this.props.price)
+            this.setState({
+                price: this.props.price
+            })
+            this.getAccountData().then(res => {
+                this.setState(
+                {
+                    transactionsArray: res
+                },
+                () => {
+                    this.processEthList(res)
+                }
+            )})   
+        }
     }
 
     handleDonate = event => {
@@ -197,7 +218,7 @@ class EthContainer extends Component {
     };
 
     render() {
-        return <div className={`${ethContainerStyle}`}>
+        return <div className={`${ethContainerStyle}`} >
             <Header as="h2">Ethereum</Header>
             <Grid divided='vertically'>
                 <Grid.Row columns={2} className={`${ethContainerStyle}`}>

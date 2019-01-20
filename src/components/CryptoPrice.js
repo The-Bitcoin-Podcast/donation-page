@@ -24,7 +24,7 @@ class CryptoPrice extends Component {
 
     render() {
         return (
-            <p>{parseFloat(this.state.price_usd) * parseFloat(this.props.amount)} USD</p>
+            <p>{parseFloat(this.state.price_usd * this.props.amount).toFixed(2)} USD</p>
         )
     }
 }
