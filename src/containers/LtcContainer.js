@@ -70,10 +70,6 @@ class LtcContainer extends Component {
             }, {});
         filteredLtcList = Object.keys(filteredLtcList)
             .map(val => filteredLtcList[val])
-            .sort((a, b) => {
-                // sort greatest to least
-                return b.value - a.value
-        })
         .map((obj, index) => {
             // add rank
             obj.rank = index + 1;

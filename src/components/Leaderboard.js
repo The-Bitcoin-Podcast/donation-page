@@ -48,7 +48,7 @@ class Leaderboard extends Component {
                     </Table.Header>
                     <Table.Body>
                         {txns.map(item => (
-                            <Table.Row key={item.from}>
+                            <Table.Row key={item.from + item.rank}>
                                 <Table.Cell><Header as='h4'>{item.rank}</Header></Table.Cell>
                                 <Table.Cell><Header as='h4'>{item.from}</Header></Table.Cell>
                                 <Table.Cell><Header as='h4'>{`${parseFloat(item.value).toPrecision(3)} ${item.currency}`}</Header>

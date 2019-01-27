@@ -3,6 +3,7 @@ import QRCode from 'qrcode.react'
 import { css } from "glamor"
 import Web3 from 'web3'
 import { Grid, Button, Form, Header } from 'semantic-ui-react'
+import Axios from 'axios';
 
 let ethContainerStyle = css({
     background: '#ffffffff',
@@ -54,15 +55,12 @@ class EthContainer extends Component {
 
     getAccountData = () => {
         let fetchCalls = [
-            fetch(`${etherscanApiLinks.extTx}`),
-            fetch(`${etherscanApiLinks.intTx}`)
+            Axios.get(`${etherscanApiLinks.extTx}`),
+            Axios.get(`${etherscanApiLinks.intTx}`)
         ];
         return Promise.all(fetchCalls)
-            .then(res => {
-                return Promise.all(res.map(apiCall => apiCall.json()));
-            })
             .then(responseJson => {
-                return [].concat.apply(...responseJson.map(res => res.result));
+                return [].concat.apply(...responseJson.map(res => res.data.result));
             });
     };
 
@@ -118,7 +116,7 @@ class EthContainer extends Component {
         return this.props.onTxChange('eth', filteredEthList)
     }
     
-    componentDidMount = () => {
+    componentDidMount = async () => {
         if (
             typeof window.web3 !== "undefined" &&
             typeof window.web3.currentProvider !== "undefined"

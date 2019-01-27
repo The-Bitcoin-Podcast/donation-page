@@ -5,6 +5,7 @@ import BtcContainer from './BtcContainer'
 import LtcContainer from './LtcContainer'
 import Leaderboard from '../components/Leaderboard'
 import Totals from '../components/Totals';
+import Axios from 'axios';
 
 let ethTotal, ltcTotal, btcTotal
 
@@ -29,17 +30,14 @@ class CryptoContainer extends Component {
 
     getCoinPrices = () => {
         let fetchCalls = [
-            fetch(`${coinsApiLinks.btc}`),
-            fetch(`${coinsApiLinks.eth}`),
-            fetch(`${coinsApiLinks.ltc}`),
+            Axios.get(`${coinsApiLinks.btc}`),
+            Axios.get(`${coinsApiLinks.eth}`),
+            Axios.get(`${coinsApiLinks.ltc}`),
         ];
         Promise.all(fetchCalls)
-            .then(res => {
-                return Promise.all(res.map(apiCall => apiCall.json()));
-            })
             .then(responseJson => {
-                const bases = responseJson.map(x => x.ticker.base)
-                const prices = responseJson.map(x => x.ticker.price)
+                const bases = responseJson.map(x => x.data.ticker.base)
+                const prices = responseJson.map(x => x.data.ticker.price)
                 const baseprices = bases.reduce((o, k, i) => ({...o, [k]: prices[i]}), {})
                 this.setState({
                     prices: {
@@ -51,7 +49,7 @@ class CryptoContainer extends Component {
     };
 
     handleReindex = (txns) => {
-        txns = Object.keys(txns)
+        const new_txns = Object.keys(txns)
             .map(val => txns[val])
             .sort((a, b) => {
                 // sort greatest to least
@@ -63,7 +61,7 @@ class CryptoContainer extends Component {
             return obj;
         });
         return this.setState({
-            txns
+            txns: new_txns
         })
     }
 
@@ -92,7 +90,7 @@ class CryptoContainer extends Component {
                 }
             })
             this.handleReindex([
-                ...txns,
+                ...ethTxns,
                 ...oldTxns
             ])
         } else if (currency === 'ltc') {
@@ -117,7 +115,7 @@ class CryptoContainer extends Component {
                 }
             })
             this.handleReindex([
-                ...txns,
+                ...ltcTxns,
                 ...oldTxns
             ])
         } else if (currency === 'btc') {
@@ -142,7 +140,7 @@ class CryptoContainer extends Component {
                 },
             })
             this.handleReindex([
-                ...txns,
+                ...btcTxns,
                 ...oldTxns
             ])
         }
