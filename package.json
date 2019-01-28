@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "blockcypher": "^0.2.0",
+    "dotenv": "^6.2.0",
     "glamor": "^2.20.40",
     "lodash": "^4.17.11",
     "qrcode.react": "^0.9.2",

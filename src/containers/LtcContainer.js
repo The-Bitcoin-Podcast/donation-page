@@ -14,8 +14,8 @@ let qrCodeStyle = css({
     justifySelf: 'end',
 })
 
-const donationDisplay = "MGbRJcpJEJMAFXstTVmWx2JCrt2L4EKAEx"
-const donationAddress = "3APGzjQLHBVjT2bzMcnB8P3oYBRt2EHgbj"; //replace with the address to watch
+const donationDisplay = process.env.REACT_APP_LTC_DISPLAY 
+const donationAddress = process.env.REACT_APP_LTC_ADDRESS
 const blockcypherApiLinks = {
     txns: "https://api.blockcypher.com/v1/ltc/main/addrs/" + donationAddress
 }

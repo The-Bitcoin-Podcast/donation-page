@@ -21,9 +21,8 @@ let formStyle = css({
 })
 
 const donationNetworkID = 1; // make sure donations only go through on this network.
-// const donationAddress = "0x0Ab4d7d50f36A168EbA567b07BbB7D1Ad3372A86"; //replace with the address to watch
-const donationAddress = "0x0Ab4d7d50f36A168EbA567b07BbB7D1Ad3372A86" //replace with the address to watch
-const apiKey = "SC1H6JHAK19WC1D3BGV3JWIFD983E7BS58"; //replace with your own key
+let donationAddress = process.env.REACT_APP_ETH_ADDRESS
+const apiKey = process.env.REACT_APP_ETHERSCAN_API_KEY
 let myweb3
 
 const etherscanApiLinks = {

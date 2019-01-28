@@ -27,3 +27,7 @@ TODO:
 - [ ] More general web3 compatibility (Status / MIST / MyCrypto / etc)
 - [ ] Style overhaul ( includig mobile view )
 - [x] Switch from `fetch` to `axios.get`
+- [ ] use [WatermelonDB](https://github.com/Nozbe/WatermelonDB)
+- [ ] implemented leaderboard change alerting
+- [ ] add lightning node to BTC section
+- [ ] add config setup to readme

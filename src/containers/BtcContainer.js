@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import QRCode from 'qrcode.react'
 import { css } from "glamor"
 import { Header } from 'semantic-ui-react';
+import Axios from 'axios';
 
 let btcContainerStyle = css({
     background: '#ffffffff',
@@ -14,8 +15,7 @@ let qrCodeStyle = css({
     justifySelf: 'end',
 })
 
-const donationAddress = "3E4vFyDB4wCSoRfbqwNvKoNXw3ADKbBxBX"; //replace with the address to watch
-// const donationAddress = "3CxLwST9RZY4NXTAarNjgoTtoD8tR3cKxv"; //replace with the address to watch
+const donationAddress = process.env.REACT_APP_BTC_ADDRESS 
 const apiLinks = {
     blockcypher: "https://api.blockcypher.com/v1/btc/main/addrs/" + donationAddress,
     btccom: `https://chain.api.btc.com/v3/address/${donationAddress}/tx`,
@@ -29,14 +29,11 @@ class BtcContainer extends Component {
     getAccountData = () => {
         let fetchCalls = [
             // fetch(`${apiLinks.blockcypher}`, {'mode': 'no-cors'}),
-            fetch(`${apiLinks.btccom}`),
+            Axios.get(`${apiLinks.btccom}`),
         ];
         return Promise.all(fetchCalls)
-            .then(res => {
-                return Promise.all(res.map(apiCall => apiCall.json()));
-            })
             .then(responseJson => {
-                return responseJson[0].data.list ? [].concat.apply(responseJson[0].data.list) : []
+                return responseJson[0].data.data.list ? [].concat.apply(responseJson[0].data.data.list) : []
             })
     };
 
@@ -68,11 +65,6 @@ class BtcContainer extends Component {
             }, {});
         filteredBtcList = Object.keys(filteredBtcList)
             .map(val => filteredBtcList[val])
-        .map((obj, index) => {
-            // add rank
-            obj.rank = index + 1;
-            return obj;
-        });
         return this.props.onTxChange('btc', filteredBtcList)
     }
 

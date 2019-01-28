@@ -3,11 +3,10 @@ import './App.css';
 import './semantic/dist/semantic.min.css'
 import { Container } from 'semantic-ui-react'
 
-
 import Welcome from './components/Welcome'
 import CryptoContainer from './containers/CryptoContainer'
 
-
+require('dotenv').config()
 
 class App extends Component {
 
